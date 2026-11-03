@@ -1,0 +1,21 @@
+/* Extra styles for the working (JS + API) version. Loaded after STYLE.CSS */
+.hidden { display: none !important; }
+
+.login-error { color: #e05263; font-size: 13px; margin: -6px 0 14px; min-height: 16px; }
+
+.book-form { grid-template-columns: 1fr 1fr 1fr 1fr auto; }
+.inline-form { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 15px; align-items: end; margin-bottom: 20px; }
+@media (max-width: 1100px) { .book-form, .inline-form { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 650px) { .book-form, .inline-form { grid-template-columns: 1fr; } }
+
+.mini-btn { border: none; border-radius: 8px; padding: 7px 11px; font-size: 12px; font-weight: 700; cursor: pointer; margin-right: 6px; }
+.mini-btn.issue { background: #eef1ff; color: #536dfe; }
+.mini-btn.return { background: #eaf9f0; color: #28a866; }
+.mini-btn.delete { background: #fff0f2; color: #e05263; }
+.mini-btn:hover { filter: brightness(0.95); }
+
+.status.returned { background: #eef1ff; color: #536dfe; }
+.empty-row td { text-align: center; color: #9298aa; padding: 28px; }
+
+.toast { position: fixed; right: 20px; bottom: 20px; z-index: 99; padding: 13px 18px; border-radius: 12px; color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,.18); background: #28a866; }
+.toast.error { background: #e05263; }

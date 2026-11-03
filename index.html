@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Desk</title>
+    <link rel="stylesheet" href="STYLE.CSS">
+    <link rel="stylesheet" href="extra.css">
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section id="login" class="login-page">
+    <div class="login-box">
+        <div class="logo-circle">📚</div>
+        <h1>Library Desk</h1>
+        <p class="login-subtitle">Library Management System</p>
+
+        <form id="loginForm">
+            <label>Username</label>
+            <input id="loginUser" type="text" placeholder="Enter username" required>
+            <label>Password</label>
+            <input id="loginPass" type="password" placeholder="Enter password" required>
+            <div class="login-error" id="loginError"></div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <p class="login-note">Library Management System</p>
+    </div>
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+<section id="dashboard" class="dashboard-page hidden">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">📚</div>
+            <div><h2>Library Desk</h2><span>Management System</span></div>
+        </div>
+        <nav>
+            <a href="#dashboard" class="active">🏠 Dashboard</a>
+            <a href="#books">📚 Books</a>
+            <a href="#readers">👥 Readers</a>
+            <a href="#issued">📖 Issued Books</a>
+            <a href="#records">📋 Records</a>
+            <a href="#settings">⚙ Settings</a>
+        </nav>
+        <a href="#login" class="logout" id="logoutBtn">↪ Logout</a>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div><h1>Dashboard</h1><p>Manage your library easily</p></div>
+            <div class="admin">
+                <div class="admin-avatar">A</div>
+                <div><strong>Admin</strong><small>Administrator</small></div>
+            </div>
+        </header>
+
+        <div class="welcome">
+            <div>
+                <span class="welcome-tag">WELCOME BACK 👋</span>
+                <h2 id="greeting">Hello, Admin!</h2>
+                <p>Keep track of books, readers and library records from one place.</p>
+            </div>
+            <div class="welcome-book">📚</div>
+        </div>
+
+        <section class="stats">
+            <div class="stat-card"><div class="stat-icon blue">📚</div><div><span>Total Books</span><h2 id="statTotal">0</h2></div></div>
+            <div class="stat-card"><div class="stat-icon purple">📖</div><div><span>Issued Books</span><h2 id="statIssued">0</h2></div></div>
+            <div class="stat-card"><div class="stat-icon green">✓</div><div><span>Available</span><h2 id="statAvailable">0</h2></div></div>
+            <div class="stat-card"><div class="stat-icon orange">👥</div><div><span>Readers</span><h2 id="statReaders">0</h2></div></div>
+        </section>
+
+        <!-- ADD / ISSUE BOOK -->
+        <section class="content-card">
+            <div class="section-heading">
+                <div><h2>Add / Issue Book</h2><p>Reader name is optional — if you fill it, the book is issued right after adding</p></div>
+                <span class="section-number">01</span>
+            </div>
+            <form class="book-form" id="bookForm">
+                <div class="input-group"><label>Reader Name</label><input id="fReader" type="text" placeholder="Enter reader name"></div>
+                <div class="input-group"><label>Book Name *</label><input id="fBook" type="text" placeholder="Enter book name" required></div>
+                <div class="input-group"><label>Author</label><input id="fAuthor" type="text" placeholder="Enter author"></div>
+                <div class="input-group"><label>Genre *</label>
+                    <select id="fGenre" required>
+                        <option value="">Select genre</option>
+                        <option>Programming</option><option>Fiction</option><option>Self Help</option>
+                        <option>Science</option><option>History</option><option>Finance</option><option>Biography</option>
+                    </select>
+                </div>
+                <button type="submit" class="add-btn">+ Add Book</button>
+            </form>
+        </section>
+
+        <!-- RECENT -->
+        <section id="books" class="content-card">
+            <div class="section-heading">
+                <div><h2>Recent Books</h2><p>Recently added library books</p></div>
+                <a href="#index" class="view-btn">View All →</a>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Reader</th><th>Book Name</th><th>Genre</th><th>Status</th><th>Date</th></tr></thead>
+                    <tbody id="recentBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- BOOKS INDEX -->
+        <section id="index" class="content-card index-section">
+            <div class="section-heading">
+                <div>
+                    <span class="small-label">LIBRARY INDEX</span>
+                    <h2>Books Index</h2>
+                    <p>Complete list of books available in the library</p>
+                </div>
+            </div>
+            <div class="search-area">
+                <div class="search-box">🔍 <input id="searchInput" type="text" placeholder="Search book or author..."></div>
+                <select id="genreFilter"><option value="">All Genres</option></select>
+                <select id="statusFilter">
+                    <option value="">All Status</option><option>Available</option><option>Issued</option>
+                </select>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Book ID</th><th>Book Name</th><th>Author</th><th>Genre</th><th>Status</th><th>Actions</th></tr></thead>
+                    <tbody id="indexBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- READERS -->
+        <section id="readers" class="content-card">
+            <div class="section-heading">
+                <div><h2>👥 Readers</h2><p>Register and view library readers</p></div>
+            </div>
+            <form class="inline-form" id="readerForm">
+                <div class="input-group"><label>Reader Name *</label><input id="rName" type="text" placeholder="Name" required></div>
+                <div class="input-group"><label>Email</label><input id="rEmail" type="email" placeholder="Email"></div>
+                <div class="input-group"><label>Phone</label><input id="rPhone" type="text" placeholder="Phone"></div>
+                <button type="submit" class="add-btn">+ Add Reader</button>
+            </form>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Books Held</th></tr></thead>
+                    <tbody id="readersBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ISSUED -->
+        <section id="issued" class="content-card">
+            <div class="section-heading"><div><h2>📖 Issued Books</h2><p>Details of currently issued books</p></div></div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Book</th><th>Reader</th><th>Issue Date</th><th>Action</th></tr></thead>
+                    <tbody id="issuedBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RECORDS -->
+        <section id="records" class="content-card">
+            <div class="section-heading"><div><h2>📋 Records</h2><p>Library transaction records</p></div></div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>#</th><th>Book</th><th>Reader</th><th>Issued</th><th>Returned</th><th>Status</th></tr></thead>
+                    <tbody id="recordsBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="settings" class="simple-section">
+            <h2>⚙ Settings</h2>
+            <p>Admin username and password are set with the ADMIN_USER and ADMIN_PASS environment variables.</p>
+        </section>
+
+        <footer>© 2026 Library Desk • Library Management System</footer>
+    </main>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
